@@ -3,9 +3,7 @@ import random
 import statistics
 import matplotlib.pyplot as plt
 
-# -----------------------------
 # ESCENARIOS QUE VAMOS A SIMULAR
-# -----------------------------
 ESCENARIOS = {
     "Día Normal": {
         "pacientes": 200,
@@ -39,18 +37,15 @@ TIEMPO_CON_DOCTOR = 20
 TIEMPO_EN_LAB = 15
 TIEMPO_EN_RAYOSX = 15
 
-# -----------------------------
 # DECISIONES CLÍNICAS SEGÚN PRIORIDAD
-# -----------------------------
+
 def necesita_laboratorio(prioridad):
     return prioridad in [1, 2, 3]
 
 def necesita_rayosx(prioridad):
     return prioridad in [1, 2, 4]
 
-# -----------------------------
 # ÁREAS DE ATENCIÓN
-# -----------------------------
 def ir_a_triage(env, prioridad, enfermeras):
     with enfermeras.request(priority=prioridad) as req:
         inicio = env.now
@@ -79,9 +74,9 @@ def ir_a_rayosx(env, prioridad, rayosx):
         yield env.timeout(TIEMPO_EN_RAYOSX)
         return env.now - inicio
 
-# -----------------------------
+
 # FLUJO COMPLETO DE UN PACIENTE
-# -----------------------------
+
 def atender_paciente(env, id, enfermeras, doctores, laboratorios, rayosx, tiempos):
     llegada = env.now
     prioridad = random.randint(1, 5)
@@ -106,18 +101,16 @@ def atender_paciente(env, id, enfermeras, doctores, laboratorios, rayosx, tiempo
     tiempos['lab'].append(espera_lab)
     tiempos['rayosx'].append(espera_rx)
 
-# -----------------------------
-# LOS PACIENTES VAN LLEGANDO...
-# -----------------------------
+# LOS PACIENTES VAN LLEGANDO
 def flujo_de_pacientes(env, config, enfermeras, doctores, laboratorios, rayosx, tiempos):
     for i in range(config["pacientes"]):
         env.process(atender_paciente(env, i, enfermeras, doctores, laboratorios, rayosx, tiempos))
         siguiente = random.expovariate(1.0 / config["llegada_prom"])
         yield env.timeout(siguiente)
 
-# -----------------------------
+
 # FUNCIÓN QUE CORRE LA SIMULACIÓN
-# -----------------------------
+
 def correr_simulacion(nombre, config):
     random.seed(42)
     env = simpy.Environment()
@@ -147,8 +140,7 @@ def correr_simulacion(nombre, config):
     plt.tight_layout()
     plt.show()
 
-# -----------------------------
+
 # CORREMOS LAS SIMULACIONES
-# -----------------------------
 for nombre, config in ESCENARIOS.items():
     correr_simulacion(nombre, config)
