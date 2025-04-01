@@ -94,7 +94,7 @@ public class Hospital {
             writer.newLine();
         } catch (IOException e) {
             System.out.println("Error al guardar el paciente atendido.");
-        }
+        } 
     }
 
     private static void actualizarArchivoPacientes(Paciente atendido) {
