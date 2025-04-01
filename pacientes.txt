@@ -1,0 +1,27 @@
+Diego Quixchan, Fractura en el brazo derecho, C
+María López, Apendicitis, A
+Carlos Gómez, Golpe en la cabeza, B
+Andrea Martínez, Quemadura de segundo grado, C
+Juan Pérez, Infarto, A
+Sofía Ramírez, Dolor abdominal severo, B
+Luis Torres, Fractura de pierna, C
+Ana Castillo, Reacción alérgica, A
+Pedro Herrera, Insuficiencia respiratoria, A
+Carmen Sarmiento, Dolores de parto, B
+José Morales, Dislocación de hombro, C
+Fernanda Ruiz, Intoxicación alimentaria, B
+Miguel Sánchez, Herida por objeto punzante, C
+Laura Delgado, Tos y fiebre alta, D
+Roberto Núñez, Caída desde escaleras, B
+Paula Vásquez, Crisis de asma, A
+Elena Torres, Mareos y vómitos, D
+Ricardo Molina, Dolor en el pecho, A
+Gabriela Ríos, Lesión en la espalda, C
+Hugo Fernández, Golpe en la rodilla, D
+Valentina Castro, Infección en la garganta, E
+Daniel Ortega, Hipertensión severa, B
+Patricia Reyes, Accidente en motocicleta, A
+Mario Fuentes, Fractura en la muñeca, C
+Sara Méndez, Fiebre alta y erupción cutánea, D
+Francisco Alvarado, Lesión en el tobillo, E
+Juan Jos� Ram�rez , Implosi�n testicular , A
