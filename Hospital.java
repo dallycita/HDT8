@@ -2,14 +2,21 @@ import java.io.*;
 import java.util.*;
 
 public class Hospital {
+
     private static final String ARCHIVO_PACIENTES = "pacientes.txt";
     private static final String ARCHIVO_ATENDIDOS = "PacientesAtendidos.txt";
 
+    /**
+     * Método principal. Despliega un menú que permite al usuario
+     * agregar pacientes, atender al siguiente paciente en prioridad o salir del sistema.
+     *
+     * @param args Argumentos de línea de comandos.
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         VectorHeap<Paciente> cola = new VectorHeap<>();
 
-        // Cargar los pacientes desde el archivo al iniciar el programa
+        // Carga los pacientes desde archivo al iniciar
         cargarPacientes(cola);
 
         while (true) {
@@ -19,7 +26,7 @@ public class Hospital {
             System.out.println("3. Salir");
             System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir salto de línea
+            scanner.nextLine(); // Limpia el salto de línea
 
             switch (opcion) {
                 case 1:
@@ -37,6 +44,13 @@ public class Hospital {
         }
     }
 
+    /**
+     * Solicita los datos de un nuevo paciente desde consola, lo agrega a la cola de prioridad
+     * y guarda su información en el archivo de pacientes.
+     *
+     * @param scanner Scanner para capturar datos desde consola.
+     * @param cola    Cola de prioridad donde se almacenará el nuevo paciente.
+     */
     private static void agregarPaciente(Scanner scanner, VectorHeap<Paciente> cola) {
         System.out.print("Ingrese nombre del paciente: ");
         String nombre = scanner.nextLine();
@@ -44,11 +58,11 @@ public class Hospital {
         String sintoma = scanner.nextLine();
         System.out.print("Ingrese código de emergencia (A-E): ");
         char codigoEmergencia = scanner.next().charAt(0);
-        scanner.nextLine(); // Consumir el salto de línea
+        scanner.nextLine(); // Limpiar el buffer
 
         Paciente nuevoPaciente = new Paciente(nombre, sintoma, codigoEmergencia);
 
-        // Guardar en el archivo pacientes.txt
+        // Guardar en el archivo
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARCHIVO_PACIENTES, true))) {
             writer.write(nuevoPaciente.toString());
             writer.newLine();
@@ -56,11 +70,15 @@ public class Hospital {
             System.out.println("Error al guardar el paciente.");
         }
 
-        // Agregar el nuevo paciente a la cola de prioridad en memoria
         cola.insert(nuevoPaciente);
         System.out.println("Paciente agregado correctamente.");
     }
 
+    /**
+     * Lee el archivo de pacientes y agrega cada uno a la cola de prioridad al iniciar el sistema.
+     *
+     * @param cola Cola de prioridad donde se cargarán los pacientes.
+     */
     private static void cargarPacientes(VectorHeap<Paciente> cola) {
         try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_PACIENTES))) {
             String linea;
@@ -75,32 +93,40 @@ public class Hospital {
         }
     }
 
+    /**
+     * Atiende al siguiente paciente en la cola (el de mayor prioridad), lo guarda
+     * en el archivo de pacientes atendidos y actualiza el archivo original eliminándolo.
+     *
+     * @param cola Cola de prioridad de donde se obtendrá el paciente a atender.
+     */
     private static void atenderPaciente(VectorHeap<Paciente> cola) {
         if (cola.isEmpty()) {
             System.out.println("No hay pacientes en espera.");
             return;
         }
 
-        // Obtener y eliminar el paciente con mayor prioridad
         Paciente atendido = cola.remove();
         System.out.println("\nAtendiendo a: " + atendido);
 
-        // Actualizar pacientes.txt eliminando el paciente atendido
         actualizarArchivoPacientes(atendido);
 
-        // Guardar el paciente atendido en PacientesAtendidos.txt
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARCHIVO_ATENDIDOS, true))) {
             writer.write(atendido.toString());
             writer.newLine();
         } catch (IOException e) {
             System.out.println("Error al guardar el paciente atendido.");
-        } 
+        }
     }
 
+    /**
+     * Actualiza el archivo de pacientes eliminando al que fue atendido,
+     * para que no aparezca nuevamente en la cola al reiniciar el programa.
+     *
+     * @param atendido Paciente que ya fue atendido y debe eliminarse del archivo.
+     */
     private static void actualizarArchivoPacientes(Paciente atendido) {
         List<String> pacientesRestantes = new ArrayList<>();
 
-        // Leer todos los pacientes y excluir al que fue atendido
         try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_PACIENTES))) {
             String linea;
             while ((linea = br.readLine()) != null) {
@@ -112,7 +138,6 @@ public class Hospital {
             System.out.println("Error al leer el archivo de pacientes.");
         }
 
-        // Reescribir pacientes.txt con los pacientes restantes
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARCHIVO_PACIENTES))) {
             for (String paciente : pacientesRestantes) {
                 writer.write(paciente);
