@@ -1,36 +1,4 @@
-María López, Apendicitis, A
-Juan Pérez, Infarto, A
-Ana Castillo, Reacción alérgica, A
-Pedro Herrera, Insuficiencia respiratoria, A
-Paula Vásquez, Crisis de asma, A
-Ricardo Molina, Dolor en el pecho, A
-Patricia Reyes, Accidente en motocicleta, A
-Juan Jos� Ram�rez , Implosi�n testicular , A
-Wilson Pe�a, Fractura en costilla derecha, A
-Wilson Pe�a , Rotura en la rodilla, A
-Daniela Orellana, Cirug�a Pl�stica , A
-Harry Mendez, Fractura en la cabeza, A
-Carlos Gómez, Golpe en la cabeza, B
-Sofía Ramírez, Dolor abdominal severo, B
-Carmen Sarmiento, Dolores de parto, B
-Fernanda Ruiz, Intoxicación alimentaria, B
-Roberto Núñez, Caída desde escaleras, B
-Daniel Ortega, Hipertensión severa, B
-Diego Quixchan, Fractura en el brazo derecho, C
-Andrea Martínez, Quemadura de segundo grado, C
-José Morales, Dislocación de hombro, C
-Miguel Sánchez, Herida por objeto punzante, C
-Luis Torres, Fractura de pierna, C
-Gabriela Ríos, Lesión en la espalda, C
-Dally Ramirez, Brazo roto, C
-Mario Fuentes, Fractura en la muñeca, C
-Laura Delgado, Tos y fiebre alta, D
-Diego Quixchan, Pie quebrado , D
-Elena Torres, Mareos y vómitos, D
-Hugo Fernández, Golpe en la rodilla, D
-Sara Méndez, Fiebre alta y erupción cutánea, D
 Juan daniel Ordo�ez , Ceguera, E
 Dally Ramirez, Miop�a, E
-Harry, Pie roto, E
-Valentina Castro, Infección en la garganta, E
 Francisco Alvarado, Lesión en el tobillo, E
+Dally Ramirez, fractura en el hombro, a
